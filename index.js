@@ -1,6 +1,7 @@
 let status =false;
 let data=[];
 let edid=0;
+var id_num=11;
 
 const load=async() =>{
     let result = await fetch('https://jsonplaceholder.typicode.com/users')
@@ -19,6 +20,7 @@ const process=async()=>{
     data.forEach((item) =>{
         
         let tr=document.createElement('tr');
+        tr.classList.add("newp");
 
         let td=document.createElement('td');
         let td1=document.createElement('td');
@@ -35,7 +37,7 @@ const process=async()=>{
         td4.innerHTML=`${item.website}`
         td5.innerHTML=`<button type="button"class="btn btn-primary mx-4" data-bs-toggle="modal"
         data-bs-target="#exampleModal" onclick="editBtn(${item.id});">Edit</button>`
-        td6.innerHTML= `<button class="btn btn-primary" onclick="dlo(${item.id})"><a href="#myModal" style="color: white;" data-toggle="modal">Delete</a></button>`;
+        td6.innerHTML= `<button class="btn btn-primary" onclick="dlo(${item.id})"><a class="decor" href="#myModal" style="color: white;" data-toggle="modal">Delete</a></button>`;
 
         tr.appendChild(td);
         tr.appendChild(td1);
@@ -56,7 +58,7 @@ function addUser(){
     }else{
         
         let myObj={
-            id : data.length+1,
+            id : id_num++,
             name : document.getElementById('name').value,
             email : document.getElementById('email').value,
             phone : document.getElementById('phone').value,
@@ -72,6 +74,7 @@ function addUser(){
     document.getElementById('email').value=``;
     document.getElementById('phone').value=``;
     document.getElementById('website').value=``;
+    console.log("after add: ",data);
     
 }
 function deleteUser(){
@@ -81,6 +84,7 @@ function deleteUser(){
     let tab=document.getElementById('tdata');
     tab.innerHTML=``;
     process();
+    console.log("after delete: ",data);
 }
 
 
@@ -125,6 +129,57 @@ let updatedetails=()=>{
 function dlo(id){
     document.getElementById('delitem').value=id;
 }
+
+
+
+
+
+
+
+
+
+
+// function rem(){
+//     document.getElementsByClassName('btn')[0].classList.remove('btn-primary');
+// }
+
+
+function page(a){
+    //a-page no , opt- dropdown option,
+    let opt=document.getElementById('opt').value;
+    process();
+    for(let j=0;j<=data.length-1;j++){
+         document.getElementsByClassName('newp')[j].style.display="none";
+    }
+    
+    let r=Number(a)-1;
+    let i=r*Number(opt);
+    let l=i+Number(opt);
+    //alert("a="+a+" opt="+opt+" i="+i+" l="+l);
+    for(i;i<=l-1 && i<data.length;i++){
+        document.getElementsByClassName('newp')[i].style.display="";
+    }
+    //  data.forEach((item) =>{
+    //      for(let i=0;i< data.length;i+=opt){
+    //          for(let j=i;j< opt+i;j++){
+    //              console.log(j);
+    //          }
+
+    //      }
+
+    //  });
+    }
+    // let i=opt*a-1;//4,9
+    // let last=i-1+opt;//9
+    // for(let k=i;k<last;k++){
+    //     alert(k);
+    //      document.getElementsByTagName('tr')[k].classList.remove('d-none');
+    // }
+
+
+// function dummy(a){
+//     alert(a);
+// }
 
 
 // function search(){

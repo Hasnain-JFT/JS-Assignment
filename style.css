@@ -1,16 +1,21 @@
 body{
     padding-top: 90px;
-    padding-bottom:90px;
+    padding-bottom:120px;
 }
 .footer {
     position: fixed;
   left: 0;
+  height : 15vh;
   bottom: 0;
   width: 100%;
   background-color:rgb(231, 231, 231);
   color: white;
   text-align: center;
   color: black;
+}
+
+.decor{
+	text-decoration: none !important;
 }
 
 
